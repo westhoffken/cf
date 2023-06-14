@@ -1,0 +1,52 @@
+<div id="history">
+    <ul>
+        <!--reason we use inner html ios because we wish to parse html entities-->
+        <li *ngFor="let hist of history" [innerHTML]="hist"></li>
+    </ul>
+
+</div>
+
+<div id="sumInput" [innerHTML]="sum">
+
+</div>
+<div id="functionalButtons">
+
+</div>
+<div id="operatorButtons">
+
+    <div class="row">
+        <input type="button" (click)="add('7')" value="7">
+        <input type="button" (click)="add('8')" value="8">
+        <input type="button" (click)="add('9')" value="9">
+        <input type="button" (click)="add('/')" value="/">
+        <input type="button" (click)="backspace()" value="Bck">
+        <input type="button" (click)="clear()" value="Clr">
+    </div>
+
+    <div class="row">
+        <input type="button" (click)="add('4')" value="4">
+        <input type="button" (click)="add('5')" value="5">
+        <input type="button" (click)="add('6')" value="6">
+        <input type="button" (click)="add('*')" value="&lowast;">
+        <input type="button" (click)="add('(')" value="(">
+        <input type="button" (click)="add(')')" value=")">
+    </div>
+
+    <div class="row">
+        <input type="button" (click)="add('1')" value="1">
+        <input type="button" (click)="add('2')" value="2">
+        <input type="button" (click)="add('3')" value="3">
+        <input type="button" (click)="add('-')" value="-">
+        <input type="button" (click)="add('**2')" value="Exp">
+        <input type="button" (click)="add('sqrt(')" value="&radic;">
+    </div>
+
+    <div class="row">
+        <input type="button" (click)="add('0')" value="0">
+        <input type="button" (click)="add(',')" value=",">
+        <input type="button" (click)="add('%')" value="%">
+        <input type="button" (click)="add('+')" value="+">
+        <input type="button" id="calculateButton" (click)="calculate()" value="=">
+    </div>
+</div>
+
