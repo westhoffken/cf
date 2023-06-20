@@ -6,8 +6,8 @@ import {Command} from "@angular/cli/models/command";
 import {CommandService} from "./services/command.service";
 
 export interface Result {
-    response: string,
-    errorMessage: string
+    result: string,
+
 }
 
 /**
@@ -36,11 +36,6 @@ export class AppComponent {
     //HIs
     public history: String [] = [];
 
-
-    // this is an array that captures all commands, so we can revert back to a command with the backspace button
-    private shadowSum: String[] = [];
-
-
     //Each component can require a different endpoint, so we make it a part of the component.
     // This way the base is set in stone and the rest can be less set in stone
     private endpoint: string = '/calculate'
@@ -52,10 +47,8 @@ export class AppComponent {
     }
 
     public add(char: string) {
-        console.log(this.calculated);
         // clear first otherwise you rest your sum!
         this.clearResult();
-        console.log('adding char', char);
         // add the characters to the string and show it
         this.commandService.add(char)
         this.sum = this.commandService.makeReadableSum();
@@ -77,14 +70,14 @@ export class AppComponent {
     public calculate() {
 
         this.postData({
-            sum: this.commandService.makeReadableSum(false),
+            sum: this.commandService.makeReadableSum(),
             commands: this.commandService.commands
         }).subscribe(res => {
-                console.log('response from backend', res);
+
                 // The is sign should only be set in the history
-                this.commandService.add('=' + res.response)
+                this.commandService.add('=' + res.result)
                 this.calculated = true;
-                this.pushToHistory(res.response);
+                this.pushToHistory(res.result.toString());
             },
             err => {
 
